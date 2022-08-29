@@ -1,18 +1,28 @@
 package co.edu.escuelaing.entities;
 
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import co.edu.escuelaing.dto.UserDto;
 
+@Document
 public class User {
+
+    @Id
     private String id;
     private String name;
+    @Indexed(unique = true)
     private String email;
     private String lastName;
-    private String createdAt;
+    private Date createdAt;
 
     public User() {
     }
 
-    public User(String id, String name, String email, String lastName, String createdAt) {
+    public User(String id, String name, String email, String lastName, Date createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -52,16 +62,16 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
     public UserDto toDTO() {
-        return new UserDto(id, name, email, lastName, createdAt);
+        return new UserDto(id, name, email, lastName, createdAt.toString());
     }
 
 }

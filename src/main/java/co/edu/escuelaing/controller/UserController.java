@@ -1,5 +1,7 @@
 package co.edu.escuelaing.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,5 +65,20 @@ public class UserController {
     public ResponseEntity<Boolean> delete(@PathVariable String id) {
         userService.deleteById(id);
         return ResponseEntity.ok(userService.findById(id) == null);
+    }
+
+    @GetMapping("/searchName/{queryText}")
+    public ResponseEntity<List<UserDto>> findUsersWithNameOrLastNameLike(@PathVariable String queryText) {
+        List<UserDto> users = new ArrayList<>();
+        userService.findUsersWithNameOrLastNameLike(queryText).forEach((user) -> users.add(user.toDTO()));
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/searchDate/{startDate}")
+    public ResponseEntity<List<UserDto>> findUsersCreatedAfter(@PathVariable String startDate) throws ParseException {
+        List<UserDto> users = new ArrayList<>();
+        userService.findUsersCreatedAfter(
+                new SimpleDateFormat("dd-MM-yyyy").parse(startDate)).forEach((user) -> users.add(user.toDTO()));
+        return ResponseEntity.ok(users);
     }
 }

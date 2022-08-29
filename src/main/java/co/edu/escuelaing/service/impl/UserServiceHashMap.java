@@ -1,15 +1,13 @@
 package co.edu.escuelaing.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 import co.edu.escuelaing.entities.User;
 import co.edu.escuelaing.service.UserService;
 
-@Service
 public class UserServiceHashMap implements UserService {
 
     private HashMap<String, User> userMap = new HashMap<>();
@@ -49,6 +47,18 @@ public class UserServiceHashMap implements UserService {
         }
         deleteById(userId);
         return create(user);
+    }
+
+    @Override
+    public List<User> findUsersWithNameOrLastNameLike(String queryText) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<User> findUsersCreatedAfter(Date startDate) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

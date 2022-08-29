@@ -21,3 +21,11 @@
 ### Eliminar Usuario
 
 ![](img/eliminarUsuario.png)
+
+### Consulta si el nombre o apellido del apellido contiene el string
+
+![](img/consultaNombre.png)
+
+### Consulta los usuarios creados despues de la fecha dada
+
+![](img/consultaFecha.png)
