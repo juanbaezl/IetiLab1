@@ -23,7 +23,7 @@ import static co.edu.escuelaing.utils.Constants.CLAIMS_ROLES_KEY;
 import static co.edu.escuelaing.utils.Constants.TOKEN_DURATION_MINUTES;;
 
 @RestController
-@RequestMapping("v1/auth")
+@RequestMapping("/v1/auth")
 public class AuthController {
 
     @Value("${app.secret}")
@@ -37,9 +37,9 @@ public class AuthController {
 
     @PostMapping
     public TokenDto login(@RequestBody LoginDto loginDto) {
-        // TODO: Implement findByEmail method
         User user = userService.findByEmail(loginDto.getEmail());
         if (BCrypt.checkpw(loginDto.getPassword(), user.getPasswordHash())) {
+            
             return generateTokenDto(user);
         } else {
             throw new InvalidCredentialsException();
@@ -48,13 +48,20 @@ public class AuthController {
     }
 
     private String generateToken(User user, Date expirationDate) {
-        return Jwts.builder()
+        try {
+            String jwt = Jwts.builder()
                 .setSubject(user.getId())
                 .claim(CLAIMS_ROLES_KEY, user.getRoles())
                 .setIssuedAt(new Date())
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
+            return jwt;
+        } catch(Exception e){
+            System.out.print(e);
+        }
+        
+        return null;
     }
 
     private TokenDto generateTokenDto(User user) {

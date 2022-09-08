@@ -17,8 +17,8 @@ public class SecurityConfiguration
             throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/v2/user").permitAll()
-                .antMatchers(HttpMethod.POST, "/v2/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v2/users").permitAll()
+                .antMatchers(HttpMethod.POST,"/v1/auth" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

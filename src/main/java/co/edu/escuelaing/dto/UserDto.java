@@ -71,7 +71,7 @@ public class UserDto {
     public User toEntity() {
         try {
             return new User(id, name, email, lastName, new SimpleDateFormat("dd/MM/yyyy").parse(createdAt),
-                    BCrypt.hashpw(this.getPassword(), BCrypt.gensalt()), RoleEnum.USER);
+                    BCrypt.hashpw(password, BCrypt.gensalt()), RoleEnum.USER);
         } catch (ParseException e) {
             e.printStackTrace();
             return null;

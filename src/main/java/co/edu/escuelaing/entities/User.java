@@ -1,5 +1,6 @@
 package co.edu.escuelaing.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class User {
     private String lastName;
     private Date createdAt;
     private String passwordHash;
-    private List<RoleEnum> roles;
+    private List<RoleEnum> roles = new ArrayList<>();
 
     public User() {
     }
