@@ -19,8 +19,8 @@ import java.io.Console;
 import java.io.IOException;
 import java.util.*;
 
-import static co.edu.escuelaing.utils.CLAIMS_ROLES_KEY;
-import static co.edu.escuelaing.utils.COOKIE_NAME;
+import static co.edu.escuelaing.utils.Constants.CLAIMS_ROLES_KEY;
+import static co.edu.escuelaing.utils.Constants.COOKIE_NAME;
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
