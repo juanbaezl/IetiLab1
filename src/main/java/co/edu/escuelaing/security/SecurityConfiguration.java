@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import edu.eci.ieti.config.JwtRequestFilter;
+import co.edu.escuelaing.config.JwtRequestFilter;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
@@ -32,8 +32,8 @@ public class SecurityConfiguration
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/v2/auth")
-                .permitAll().antMatchers(HttpMethod.POST, "/api/v2/customers")
+                .antMatchers(HttpMethod.POST, "/v1/auth")
+                .permitAll().antMatchers(HttpMethod.POST, "/api/v2/users")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
