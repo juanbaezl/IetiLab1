@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpMethod;
 import javax.ws.rs.core.HttpHeaders;
 
-import java.io.Console;
 import java.io.IOException;
 import java.util.*;
 
